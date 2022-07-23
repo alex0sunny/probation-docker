@@ -4,7 +4,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from os.path import curdir, sep
 
 
-PORT_NUMBER = 8001
+PORT_NUMBER = 3000
 
 
 class CustomHandler(BaseHTTPRequestHandler):
