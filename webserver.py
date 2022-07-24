@@ -1,13 +1,14 @@
-import json
-
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from os.path import curdir, sep
+from os import system
+from subprocess import run
 
 from calc import calculate
 
 PORT_NUMBER = 3000
 
 CALC_PATH = 'calc'
+HOOK_PATH = 'hook'
 
 
 class CustomHandler(BaseHTTPRequestHandler):
@@ -75,6 +76,8 @@ class CustomHandler(BaseHTTPRequestHandler):
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
             self.wfile.write(str(calculate(post_data)).encode())
+        if path == HOOK_PATH:
+            print(system('git pull origin main'))
 
 
 try:
