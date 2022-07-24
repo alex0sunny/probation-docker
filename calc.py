@@ -28,5 +28,5 @@ def calculate(s):
             res, last, op = stack[-3:]
             stack[-3:] = []
             res, last, cur = update_vars(res, last, op, cur)
-    return (res + last) * 10
+    return res + last
 
