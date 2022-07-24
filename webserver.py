@@ -3,8 +3,11 @@ import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from os.path import curdir, sep
 
+from calc import calculate
 
 PORT_NUMBER = 3000
+
+CALC_PATH = 'calc'
 
 
 class CustomHandler(BaseHTTPRequestHandler):
@@ -64,10 +67,14 @@ class CustomHandler(BaseHTTPRequestHandler):
     # Handler for the POST requests
     def do_POST(self):
         content_length = int(self.headers['Content-Length'])  # <--- Gets the size of data
-        post_data = self.rfile.read(content_length)  # <--- Gets the data itself
-        post_data_str = post_data.decode()
-        dic = json.loads(post_data_str)
-        print(f'path:{self.path}\nPOST:{dic}')
+        post_data = self.rfile.read(content_length).decode()
+        #print(f'path:{self.path}\nPOST:{dic}')
+        path = self.path[1:]
+        if path == CALC_PATH:
+            self.send_response(200)
+            self.send_header('Content-type', 'text/plain')
+            self.end_headers()
+            self.wfile.write(str(calculate(post_data)).encode())
 
 
 try:

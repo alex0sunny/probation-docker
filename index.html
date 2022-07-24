@@ -2,17 +2,9 @@
 <html>
 	<body>
 		<input id="exprezzion" size="20" value="2*(5+5*2)/3+(6/2+8)" pattern="[\d\s\+\-\/\*]+"/>
-		<button type="button">>></button>
+		<button type="button" onclick="calc()">>></button>
 		<input id="res" size="5" readonly/>
-		<script>
-			let prevVal = "";
-			document.getElementById("exprezzion").addEventListener('input', function(e){
-				if (this.checkValidity()){
-					prevVal = this.value;
-				} else {
-					this.value = prevVal;
-				}
-			});
-		</script>
 	</body>
+	<script src="index.js">
+	</script>
 </html>
