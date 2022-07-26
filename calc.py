@@ -2,8 +2,8 @@ def update_vars(res, last, op, cur):
     if op in '+-':
         res += last
         last = cur if op == '+' else -cur
-    else:
-        last = int(last / cur) if op == '/' else last * cur
+    #else:
+        #last = int(last / cur) if op == '/' else last * cur
     return res, last, 0
 
 
